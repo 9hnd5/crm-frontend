@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { openModalAction } from '../../Actions/appActions';
-import { setLeadNeedToEditAction } from '../../Actions/leadsActions';
-class RowContent extends React.Component {
-    openModal = () => {
-        this.props.setLeadNeedToEdit(this.props.lead);
+class RowOfTableLead extends React.Component {
+    handleClick = () => {
         this.props.openModal();
+        this.props.onRowOfTableClick(this.props.lead);
     }
     render() {
         const { id, firstName, lastName, email, phone, source, status, createDate, updateDate } = this.props.lead
         let doNotCall = status.toLowerCase() === "do not call" ? true : false;
         return (
-            <tr onClick={this.openModal}>
+            <tr onClick={this.handleClick}>
                 <td>{id}</td>
                 <td>{firstName}</td>
                 <td>{lastName}</td>
@@ -30,10 +29,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         openModal: () => {
             dispatch(openModalAction(true));
-        },
-        setLeadNeedToEdit: (lead) => {
-            dispatch(setLeadNeedToEditAction(lead));
         }
     };
 }
-export default connect(null, mapDispatchToProps)(RowContent);
+export default connect(null, mapDispatchToProps)(RowOfTableLead);

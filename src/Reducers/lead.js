@@ -1,61 +1,29 @@
+import { UPDATE_LEAD, FETCH_LEAD, GET_ALL_LEAD } from "../Constants/constants";
+
 let initialState = {
-    listLead: [
-        {
-            id: 1,
-            firstName: "Nguyen",
-            lastName: "Huy",
-            email: "ng.d.huy95@gmail.com",
-            phone: "0931335283",
-            source: "zip",
-            status: "Do not call",
-            createDate: "20/10/2020",
-            updateDate: "21/10/2020"
-        },
-        {
-            id: 2,
-            firstName: "Nguyen",
-            lastName: "Hoa",
-            email: "zunahoa@gmail.com",
-            phone: "0932545235",
-            source: "zip",
-            status: "Looking for Rental",
-            createDate: "1/10/2020",
-            updateDate: "11/10/2020"
-        }
-    ],
-    leadNeedToEdit: {}
+    listLead: []
 }
 const leadReducer = (state = initialState, action) => {
     switch(action.type){
-        case "DISPLAY_ALL_LEAD":
+        case FETCH_LEAD:
+            state.listLead = action.payload;
+            return {
+                ...state
+            };
+        case GET_ALL_LEAD:
             return {...state}
-        case "EDIT_LEAD":
-            console.log("payload", action.payload);
-            let newLead = action.payload;
-            let index = state.listLead.findIndex(function(lead){
-                return lead.id === newLead.id
-            });
+        case UPDATE_LEAD:
+            let {id, newLead} = action.payload;
             let newListLead = state.listLead.map((lead) => {
-                if(lead.id === newLead.id){
-                    return lead = newLead;
+                if(lead.id === id){
+                    return {id, ...newLead};
                 }
                 return lead;
             });
-            console.log("asdasd", newListLead, index);
             return {
                 ...state,
                 listLead: newListLead
-            }
-        case "SET_LEAD_NEED_TO_EDIT":
-            let idLeadNeedToEdit = action.payload.id
-            let leadNeedToEdit = state.listLead.find(function(lead){
-                return lead.id === idLeadNeedToEdit;
-            }); 
-            console.log("leadNeedToEdit", leadNeedToEdit);
-            return {
-                ...state,
-                leadNeedToEdit
-            }           
+            }         
         default:
             return state;
     }

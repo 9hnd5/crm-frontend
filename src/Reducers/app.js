@@ -1,15 +1,16 @@
+import { OPEN_MODAL } from "../Constants/constants";
+
 let initialState = {
-    modalIsOpen: false
+    isOpenModal: false
 }
 
 const appReducer = (state = initialState, action) => {
     switch(action.type){
-        case "OPEN_MODAL":
-            state.modalIsOpen = action.payload
-            return {...state};
-        case "CLOSE_MODAL":
-            state.modalIsOpen = action.payload
-            return {...state};
+        case OPEN_MODAL:
+            return {
+                ...state,
+                isOpenModal: action.payload
+            };
         default:
             return {...state};
     }

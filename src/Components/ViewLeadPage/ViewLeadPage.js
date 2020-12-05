@@ -1,12 +1,12 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import TableContent from './TableContent';
+import TableLead from './TableLead';
 class ViewLeadPage extends React.Component{
     render(){
         return (
             <div>
                 <SearchBar />
-                <TableContent />
+                <TableLead />
             </div>
         );
     }

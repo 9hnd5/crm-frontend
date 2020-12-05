@@ -1,17 +1,37 @@
+import { UPDATE_LEAD, GET_ALL_LEAD, FETCH_LEAD, API_URL } from "../Constants/constants"
+import { callApi } from './../Ultils/callApi';
+
 export const displayAllLead = () => {
     return {
-        type: "DISPLAY_ALL_LEAD",
+        type: GET_ALL_LEAD,
     }
 }
-export const setLeadNeedToEditAction = (lead) => {
+export const updateLeadAction = (id, newLead) => {
     return {
-        type: "SET_LEAD_NEED_TO_EDIT",
-        payload: lead
+        type: UPDATE_LEAD,
+        payload: {
+            id,
+            newLead
+        }
     }
 }
-export const editLeadAction = (lead) => {
+export const fetchLeadAction = (leads) => {
     return {
-        type: "EDIT_LEAD",
-        payload: lead
+        type: FETCH_LEAD,
+        payload: leads
     }
+}
+export const fetchLeadRequestAction = () => {
+    return (dispatch) => {
+        return callApi("lead", "GET", null).then((response) => {
+            dispatch(fetchLeadAction(response.data));
+        });
+    }
+}
+export const updateLeadRequestAction = (id, newLead) => {
+    return (dispatch) => {
+        return callApi(`lead/${id}`, "PUT", newLead).then((response) => {
+            dispatch(updateLeadAction(id, newLead));
+        });
+    };
 }
