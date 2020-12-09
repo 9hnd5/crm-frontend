@@ -1,37 +1,51 @@
-import { UPDATE_LEAD, GET_ALL_LEAD, FETCH_LEAD, API_URL } from "../Constants/constants"
+import { UPDATE_LEAD_BY_ID, SAVE_LEADS, SET_PAGE_INDEX, FILTER_LEADS } from "../Constants/constants"
 import { callApi } from './../Ultils/callApi';
+import { setLoadingApp } from "./appActions";
 
-export const displayAllLead = () => {
+//FOR REDUX STORE
+export const updateLeadById = (id, newLead) => {
     return {
-        type: GET_ALL_LEAD,
-    }
-}
-export const updateLeadAction = (id, newLead) => {
-    return {
-        type: UPDATE_LEAD,
+        type: UPDATE_LEAD_BY_ID,
         payload: {
             id,
             newLead
         }
     }
 }
-export const fetchLeadAction = (leads) => {
+export const saveLeads = (leads) => {
     return {
-        type: FETCH_LEAD,
+        type: SAVE_LEADS,
         payload: leads
     }
 }
-export const fetchLeadRequestAction = () => {
-    return (dispatch) => {
-        return callApi("lead", "GET", null).then((response) => {
-            dispatch(fetchLeadAction(response.data));
-        });
-    }
-}
-export const updateLeadRequestAction = (id, newLead) => {
-    return (dispatch) => {
-        return callApi(`lead/${id}`, "PUT", newLead).then((response) => {
-            dispatch(updateLeadAction(id, newLead));
-        });
+export const setPageIndex = (pageNumber) => {
+    return {
+        type: SET_PAGE_INDEX,
+        payload: pageNumber
     };
 }
+export const filterLeads = (filterObject) => {
+    return {
+        type: FILTER_LEADS,
+        payload: filterObject
+    };
+}
+
+//FOR CALL API
+export const updateLeadByIdRequest = (id, newLead) => {
+    return async (dispatch) => {
+        await callApi(`lead/${id}`, "PUT", newLead)
+        dispatch(updateLeadById(id, newLead));
+    };
+}
+export const fetchLeadsRequest = () => {
+    return async dispatch => {
+        dispatch(setLoadingApp(true));
+        let response = await callApi("leads", "GET", null);
+        let leads = response.data
+        dispatch(saveLeads(leads))
+        dispatch(setLoadingApp(false));
+
+    }
+}
+

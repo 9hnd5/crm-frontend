@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 import { connect } from 'react-redux';
-import { openModalAction } from '../../Actions/appActions';
-import { validateEmail } from './../../Ultils/validateEmail';
 const customStyles = {
     overlay: {
         zIndex: 3
@@ -18,37 +16,23 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
     }
 };
-class ModalEditLead extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = ({
-            isAllowSave: true
-        })
-    }
+class ModalEdit extends React.Component {
     closeModal = () => {
-        this.props.closeModal()
+        this.props.handleModalClose()
     }
     saveModal = () => {
-        this.props.onhandleModalUpdateLeadSave()
-        this.props.closeModal();
+        this.props.handleModalSave()
     }
     handleChange = (event) => {
-        if(event.target.name === "email"){
-            let email = event.target.value;
-            this.setState({
-                isAllowSave: validateEmail(email)
-            })
-        }
-        this.props.onhandleModalUpdateLeadChange(event);
+        this.props.handleModalChange(event);
     }
     render() {
-        const { isOpenModal } = this.props;
+        const { isModalOpen } = this.props;
         const { firstName, lastName, email, phone, source, status, createDate, updateDate } = this.props.currentLead
         return (
             <div>
                 <ReactModal
-                    isOpen={isOpenModal}
-                    // onAfterClose={}
+                    isOpen={isModalOpen}
                     onRequestClose={this.closeModal}
                     style={customStyles}
                     contentLabel="Example ReactModal"
@@ -123,7 +107,7 @@ class ModalEditLead extends React.Component {
 
                         <div className="row">
                             <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                <button disabled={!this.state.isAllowSave} onClick={this.saveModal} type="button" className="btn btn-success btn-block">Save</button>
+                                <button onClick={this.saveModal} type="button" className="btn btn-success btn-block">Save</button>
                             </div>
                             <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <button onClick={this.closeModal} type="button" className="btn btn-danger btn-block">Exit</button>
@@ -138,14 +122,14 @@ class ModalEditLead extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        isOpenModal: state.app.isOpenModal
+        isModalOpen: state.app.isModalOpen
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        closeModal: () => {
-            dispatch(openModalAction(false))
-        }
+        // closeModal: () => {
+        //     dispatch(openModalAction(false))
+        // }
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ModalEditLead);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEdit);

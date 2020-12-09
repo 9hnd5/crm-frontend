@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# FRONT-END FOR CRM
+## Lead Feture:
+View Leads page: List all leads in the database with filters by name, source, status (SelectList in ASP.NET MVC)
+    - Show lead status in red if it is “Do not call”. (Done)
+    - Allow paging using query string. (Done)
+    - Allow users to click on the lead name. This will redirect the users to the Edit Lead page. (Done)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Staging Report:
+    - This report will display the number of leads by each lead status. (Done)
+    - Allow users to filter leads by created date range. (Done)
 
-## Available Scripts
+## Background Job:
+    - Write a background job run daily. (Done)
+    - This job is to change leads with status “Do not call” created in the previous month to status “Archived”. (Done)
 
-In the project directory, you can run:
+## Acceptance Criteria:
+    - Design database and use Entity Framework for “Leads Features”. (Done)
+    - All features working fine without bugs. 
+    -Implement list and update lead info page by ASP.NET MVC.  Prefer to use any client lib/framework ( VueJs, ReactJs, Angular 2+ ) instead of ASP.NET MVC. You can implement an api and client app separately. (Done)
+    - You can provide stored procedure(s) for the report(s);  UI implementation to render the report(s) is/are not required. (Done)
+    - You can use any css frameworks (i.e tailwindcss, getboostrap.com, bulma.io, etc.) (Done)
+    - You have to push your code to any git repository and share with thoai@ermsystem.com (Done)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -1,7 +1,8 @@
-import { OPEN_MODAL } from "../Constants/constants";
+import { OPEN_MODAL, SET_LOADING_APP } from "../Constants/constants";
 
 let initialState = {
-    isOpenModal: false
+    isModalOpen: false,
+    isAppLoading: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -9,7 +10,12 @@ const appReducer = (state = initialState, action) => {
         case OPEN_MODAL:
             return {
                 ...state,
-                isOpenModal: action.payload
+                isModalOpen: action.payload
+            };
+        case SET_LOADING_APP:
+            return {
+                ...state,
+                isAppLoading: action.payload
             };
         default:
             return {...state};
