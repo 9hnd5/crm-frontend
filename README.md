@@ -1,6 +1,6 @@
 # FRONT-END FOR CRM
 ## Lead Feture:
-View Leads page: List all leads in the database with filters by name, source, status (SelectList in ASP.NET MVC)
+    -View Leads page: List all leads in the database with filters by name, source, status (SelectList in ASP.NET MVC)
     - Show lead status in red if it is “Do not call”. (Done)
     - Allow paging using query string. (Done)
     - Allow users to click on the lead name. This will redirect the users to the Edit Lead page. (Done)
